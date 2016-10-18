@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>#{str.vaccineListTitle}</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/template.xhtml">
+            <ui:define name="contenido">
+                <h1>#{str.vaccineListTitle}</h1>
+                <h:form>
+                    <p:commandButton value="#{str.buttonAdd}"
+                                     action="#{vacunaBean.iniciar()}"></p:commandButton>
+                </h:form>
+                <p:dataTable value="#{vacunaBean.vacunas}" var="v">
+                    <p:column headerText="#{str.action}">
+                        <h:form>
+                            <p:commandButton value="#{str.buttonEdit}"
+                                             action="#{vacunaBean.editar(v)}"></p:commandButton>
+                        </h:form>
+                    </p:column>
+                    <p:column headerText="#{str.vaccineNameHeader}">
+                        <p:outputLabel value="#{v.nombre}"></p:outputLabel>
+                    </p:column>
+                    <p:column headerText="#{str.vaccineDescriptionHeader}">
+                        <p:outputLabel value="#{v.descripcion}"></p:outputLabel>
+                    </p:column>
+                    <p:column headerText="#{str.vaccineDoseHeader}">
+                        <p:outputLabel value="#{v.docis}"></p:outputLabel>
+                    </p:column>
+                </p:dataTable>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
